@@ -1,0 +1,34 @@
+{
+    "transactions":[
+        {
+            "Category":"Grocery",
+            "Item":"Bread",
+            "Amount":40,
+            "Date":"23-04-2019"
+        },
+        {
+            "Category":"Grocery",
+            "Item":"Bread",
+            "Amount":40,
+            "Date":"23-04-2019"
+        },
+        {
+            "Category":"Grocery",
+            "Item":"Bread",
+            "Amount":40,
+            "Date":"23-04-2019"
+        },
+        {
+            "Category":"Grocery",
+            "Item":"Bread",
+            "Amount":40,
+            "Date":"23-04-2019"
+        },
+        {
+            "Category":"Grocery",
+            "Item":"Bread",
+            "Amount":40,
+            "Date":"23-04-2019"
+        }
+    ]
+}
