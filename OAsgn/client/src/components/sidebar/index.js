@@ -6,7 +6,7 @@ export default class Sidebar extends React.Component {
         return (
             <div className="sidebar">
                 <div>
-                    <Link to='/'>Home</Link>
+                    <Link to='/' className="active">Home</Link>
                 </div>
                 <div>
                     <Link to='/settings'>Settings</Link>
