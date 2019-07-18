@@ -1,8 +1,20 @@
 import React from 'react';
 import { MDBDataTable } from 'mdbreact';
 import './style.css'
+import Modal from 'react-bootstrap/Modal'
+import ExpenseForm from '../addexpensemodal/index'
 class DatatablePage extends React.Component {
 
+    state = {
+        show: false
+    }
+
+    handleShow = () => {
+        this.setState({ show: true })
+    }
+    handleClose = () => {
+        this.setState({ show: false })
+    }
     render() {
         // console.lo/g(this.props.expense)
         const data = {
@@ -43,7 +55,22 @@ class DatatablePage extends React.Component {
 
             < div className="Expense-Table" >
 
-                {/* {console.log("asd", this.props.expense)} */}
+                <button className="btn btn-info" onClick={this.handleShow}>AddExpense</button>
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Add Expense</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body><ExpenseForm /></Modal.Body>
+                    <Modal.Footer>
+                        <button className="btn btn-success" onClick={this.handleClose}>
+                            Close
+                        </button>
+                        {/* <button className="btn btn-primary" onClick={this.handleClose}>
+                            Save Changes
+                        </button> */}
+                    </Modal.Footer>
+                </Modal>
+
                 <MDBDataTable
                     striped
                     bordered
