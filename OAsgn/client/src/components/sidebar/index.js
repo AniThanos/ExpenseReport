@@ -12,7 +12,7 @@ export default class Sidebar extends React.Component {
                     <Link to='/setting'>Settings</Link>
                 </div>
                 <div>
-                    <Link to='/profile'>Profile</Link>
+                    <Link to='/'>Profile</Link>
                 </div>
             </div>
         )
