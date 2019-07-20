@@ -2,5 +2,8 @@
     height: 300px;
     width: 50%;
     border: 1px solid;
-    margin-left: 20%;
+    margin-left: 21%;
+    display: flex;
+    margin-top: 10px;
+    margin-right: 10px;
 }

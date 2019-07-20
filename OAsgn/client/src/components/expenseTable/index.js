@@ -1,5 +1,6 @@
 import React from 'react';
 import { MDBDataTable } from 'mdbreact';
+import { MDBCard, MDBCardHeader, MDBCardBody, MDBTableEditable } from "mdbreact";
 import './style.css'
 import Modal from 'react-bootstrap/Modal'
 import ExpenseForm from '../addexpensemodal/index'
@@ -16,7 +17,7 @@ class DatatablePage extends React.Component {
         this.setState({ show: false })
     }
     render() {
-        // console.lo/g(this.props.expense)
+
         const data = {
             columns: [
                 {
@@ -43,6 +44,7 @@ class DatatablePage extends React.Component {
                     sort: 'asc',
                     width: 150
                 }
+
             ],
 
             rows: this.props.expense
@@ -76,6 +78,7 @@ class DatatablePage extends React.Component {
                     bordered
                     small
                     data={data}
+                    editable
                 />
             </div >
         );
