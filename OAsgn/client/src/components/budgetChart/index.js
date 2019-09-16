@@ -16,7 +16,7 @@ class Chart extends Component {
             <div className="budget-chart">
 
                 {/* <div style={{ width: '50%' }}></div> */}
-                <div style={{ width: '50%', marginTop: '5%' }}><CircularProgressbar value={num}
+                <div style={{ display:'flex' }}><CircularProgressbar value={num}
                     text={`${num}%`}
                     strokeWidth={5}
 

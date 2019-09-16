@@ -1,6 +1,5 @@
 import React from 'react';
 import { MDBDataTable } from 'mdbreact';
-import { MDBCard, MDBCardHeader, MDBCardBody, MDBTableEditable } from "mdbreact";
 import './style.css'
 import Modal from 'react-bootstrap/Modal'
 import ExpenseForm from '../addexpensemodal/index'
@@ -16,8 +15,35 @@ class DatatablePage extends React.Component {
     handleClose = () => {
         this.setState({ show: false })
     }
-    render() {
 
+    handleEdit = (index) => {
+        console.log("Edit handler", index)
+    }
+
+
+    hanleDeleteItem = (index) => {
+        console.log("Delete Handler")
+        console.log("Before Delete::::::::::",this.props.expense)
+        const itemData=this.props.expense;
+        this.props.expense.splice(index,1)
+
+        console.log("After Delete::::::::",this.props.expense)
+
+
+    }
+
+    render() {
+        const button = (index) => {
+            return (<div>
+                <button onClick={() => this.handleEdit(index)} className="btn btn-outline-primary">Edit</button>
+                <button onClick={() => this.hanleDeleteItem(index)} className="btn btn-outline-danger">Delete</button>
+            </div>)
+        }
+        const rowData = this.props.expense;
+        rowData.map((row, index) => {
+            row.action = button(index)
+        })
+        console.log(rowData)
         const data = {
             columns: [
                 {
@@ -43,11 +69,14 @@ class DatatablePage extends React.Component {
                     field: 'Date',
                     sort: 'asc',
                     width: 150
+                },
+                {
+                    label: 'Action'
                 }
 
             ],
 
-            rows: this.props.expense
+            rows: rowData
 
 
 

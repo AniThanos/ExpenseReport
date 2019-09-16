@@ -41,36 +41,24 @@ function SettingsPage(props) {
         props.setBudget(budgetAmount)
     }
 
-    const handleCotegories = (e) => {
-        // console.log('add Cotegories clicked', categoriesName)
-        // this.setState({
-        //     arrayData: [...arrayData, categoriesName]
-        // })
-        // console.log(e.target.value === "")
-
+    const handleCategories = (e) => {
+        console.log('add Categories clicked', categoriesName)
 
         if (categoriesName !== "") {
-            setarrayData(categoriesName)
+            let tempArr=arrayData.slice();
+            tempArr.push(categoriesName)
+            setarrayData(tempArr)
             props.setCategory(categoriesName)
-            // console.log(arrayData)
+            
         }
-        setcategoriesName('')
+       
     }
 
     const deleteClicked = (item) => {
-        // this.setState({})
-
+     
         var tempArr = arrayData.slice();
-        console.log(item)
-        var index = arrayData.findIndex(data => data === item)
-
+        var index = tempArr.findIndex(data => data === item)
         tempArr.splice(index, 1)
-        // console.log(tempArr)
-
-        // this.setState({
-        //     arrayData: tempArr,
-        //     show: false
-        // })
         setarrayData(tempArr)
         setshow(false)
 
@@ -107,7 +95,7 @@ function SettingsPage(props) {
                             value={categoriesName}
                         />
 
-                        <button className="btn btn-success" onClick={handleCotegories}  >
+                        <button className="btn btn-success" onClick={handleCategories}  >
                             Add
                 </button>
 
@@ -135,7 +123,7 @@ function SettingsPage(props) {
                     </div>
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
-                            <Modal.Title>Add Expense</Modal.Title>
+                            <Modal.Title>Delete Expense</Modal.Title>
                         </Modal.Header>
                         <Modal.Body><div><label>Are you sure want to delete {deleteItem} category</label></div></Modal.Body>
                         <Modal.Footer>

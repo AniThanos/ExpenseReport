@@ -13,11 +13,9 @@ const ExpenseForm = (props) => {
         date: ''
     })
     const [error, setError] = useState(false)
-
     const { category, item, amount, date } = form;
 
-    const changeHandler = (e) => {
-
+    const changeHandler = (e) => {  
         setForm({
             ...form,
             [e.target.name]: e.target.value
@@ -28,6 +26,9 @@ const ExpenseForm = (props) => {
         e.preventDefault();
         const newExpense = { category, item, amount, date }
         if (category === "") {
+            setError(true)
+        }
+        if(amount>props.budgetredux){
             setError(true)
         }
         else {
@@ -52,7 +53,7 @@ const ExpenseForm = (props) => {
 
     return (
         <div>
-            {console.log(props.categoryredux)}
+        
             <Form onSubmit={(e) => formSubmit(e)}>
                 <Form.Group controlId="" >
                     <Form.Label>Category</Form.Label>
@@ -64,7 +65,6 @@ const ExpenseForm = (props) => {
                     </Form.Control>
                     {/* <Form.Control type="text" name="category" onChange={e => changeHandler(e)} placeholder="Enter category" /> */}
                 </Form.Group>
-                {error && <p style={{ color: 'red' }}>Select Category</p>}
                 <Form.Group controlId="">
                     <Form.Label>Item Name</Form.Label>
                     <Form.Control type="text" name="item" placeholder="Item Name" onChange={e => changeHandler(e)} required />
@@ -81,6 +81,7 @@ const ExpenseForm = (props) => {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+                {error && <p style={{ color: 'red' }}>Check Data</p>}
             </Form>
         </div>
     )
