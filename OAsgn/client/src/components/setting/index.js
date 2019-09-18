@@ -68,13 +68,14 @@ function SettingsPage(props) {
             <Header />
             <div>
                 <SideBar />
-                <div style={{ marginTop: "20px", marginTop: '100px', marginBottom: "10px", display: "flex", flexDirection: 'column', textAlign: "center" }}>
+                <div style={{textAlign: "center" }}>
                     <div className="totalBudget" >
                         <label style={{ margin: '15px', fontWeight: 'bold', fontSize: '25px' }}>Total Budget </label>
                         <input style={{}}
                             type="number" value={budgetAmount}
                             onChange={e => setbudgetAmount(e.target.value)}
                             name="budgetAmount"
+                           
                         // disabled = {balanceCheck ? true : false}
                         />
                         <button className="btn btn-success" onClick={(e) => handleUpdate(e)}  >

@@ -23,7 +23,7 @@ class Chart extends Component {
                 />
 
                 </div>
-                <div style={{ width: '50%', marginTop: '15%', padding: '10%' }}>
+                <div style={{ }}>
                     <h6>Total Budget</h6>
                     <p>{this.props.budget}</p>
                     <h6>Total Expense</h6>

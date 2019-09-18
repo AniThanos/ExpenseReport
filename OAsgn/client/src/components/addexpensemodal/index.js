@@ -28,7 +28,7 @@ const ExpenseForm = (props) => {
         if (category === "") {
             setError(true)
         }
-        if(amount>props.budgetredux){
+        else if(amount>props.budgetredux){
             setError(true)
         }
         else {

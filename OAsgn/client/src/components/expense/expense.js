@@ -28,13 +28,13 @@ export default class Expense extends React.Component {
         return (
             <div>
                 <Header />
-                <div style={{ display: "flex" }}>
+                <div style={{  }}>
                     <SideBar />
                     <BudgetChart totalExpense={this.state.totalExpense} />
                     <CategoryChart />
-
+                    <ExpenseTable expense={this.state.expense} />
                 </div>
-                <ExpenseTable expense={this.state.expense} />
+                
             </div>
         )
     }

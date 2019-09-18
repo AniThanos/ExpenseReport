@@ -1,9 +1,21 @@
 .budget-chart{
     height: 300px;
-    width: 50%;
+    width: 40%;
     border: 1px solid;
-    margin-left: 21%;
     display: flex;
-    margin-top: 10px;
-    margin-right: 10px;
+    /* margin-top: 10px;
+    margin-right: 10px; */
+    float: left;
+}
+
+@media screen and (max-width:640px){
+    .budget-chart{
+        width: 80%
+    }
+}
+
+@media screen and (max-width:320px){
+    .budget-chart{
+        width: 320px
+    }
 }
