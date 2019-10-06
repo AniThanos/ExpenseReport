@@ -41,8 +41,7 @@ const ExpenseForm = (props) => {
                 const body = newExpense
                 const res = await axios.post('https://expensereportbyani.herokuapp.com/expense/addTransactions', body, config)
                 if (res['data'] === "Success") {
-                    window.location.reload()
-
+                    console.log("success")
                 }
             } catch (err) {
                 console.log(err)
