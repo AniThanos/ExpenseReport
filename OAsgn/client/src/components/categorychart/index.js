@@ -17,7 +17,7 @@ class CategoryChart extends React.Component {
 
     componentDidMount() {
         //get xpense data
-        axios.get('http://localhost:3010/expense').then(res => {
+        axios.get('https://expensereportbyani.herokuapp.com/expense').then(res => {
 
             this.setState({ expense: res.data })
 
