@@ -35,4 +35,16 @@ router.post('/addTransactions', (req, res) => {
 
 })
 
+//delete transactions
+router.delete('/deleteTransactions/:id',(req,res)=>{
+    console.log(req.params.id)
+    let dbPath=path.join(__dirname,'../')
+    var file=dbPath+'/data/db.json';
+    var obj=require(file)
+    obj.transactions.splice(1,1)
+    fs.writeFileSync(file,JSON.stringify(obj),err=>console.log(err))
+    res.send(JSON.stringify(obj.transactions))
+})
+
+
 module.exports = router;

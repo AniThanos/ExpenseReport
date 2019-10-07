@@ -15,7 +15,7 @@ export default class Expense extends React.Component {
         //     console.log(data.body)
         // })
         let amt = 0;
-        axios.get('https://expensereportbyani.herokuapp.com/expense').then(res => {
+        axios.get('http://localhost:3010/expense').then(res => {
             res.data.map(item => {
                 amt += parseInt(item.Amount)
             })

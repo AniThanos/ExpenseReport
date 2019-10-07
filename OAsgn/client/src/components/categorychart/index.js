@@ -17,17 +17,15 @@ class CategoryChart extends React.Component {
 
     componentDidMount() {
         //get xpense data
-        axios.get('https://expensereportbyani.herokuapp.com/expense').then(res => {
+        axios.get('http://localhost:3010/expense').then(res => {
 
             this.setState({ expense: res.data })
 
             this.props.category.map(item => {
                 let amount = 0;
-                console.log(item)
                 var categoryWiseData = this.state.expense.filter(expenseitem => expenseitem.Category === item)
                 categoryWiseData.map(catWise => {
                     amount = amount + parseInt(catWise.Amount)
-                    console.log('catamt', amount)
                 })
                 let tempChartData = this.state.chartData.slice();
 
@@ -39,7 +37,7 @@ class CategoryChart extends React.Component {
             })
 
         }).catch(err => {
-            console.log(err)
+            throw Error(err)
         })
 
 

@@ -39,9 +39,9 @@ const ExpenseForm = (props) => {
                     }
                 }
                 const body = newExpense
-                const res = await axios.post('https://expensereportbyani.herokuapp.com/expense/addTransactions', body, config)
+                const res = await axios.post('http://localhost:3010/expense/addTransactions', body, config)
                 if (res['data'] === "Success") {
-                    console.log("success")
+                    props.modalClose()
                 }
             } catch (err) {
                 console.log(err)
@@ -52,7 +52,6 @@ const ExpenseForm = (props) => {
 
     return (
         <div>
-        
             <Form onSubmit={(e) => formSubmit(e)}>
                 <Form.Group controlId="" >
                     <Form.Label>Category</Form.Label>

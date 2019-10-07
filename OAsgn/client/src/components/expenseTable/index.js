@@ -3,10 +3,12 @@ import { MDBDataTable } from 'mdbreact';
 import './style.css'
 import Modal from 'react-bootstrap/Modal'
 import ExpenseForm from '../addexpensemodal/index'
+import Axios from 'axios';
 class DatatablePage extends React.Component {
 
     state = {
-        show: false
+        show: false,
+        data: ''
     }
 
     handleShow = () => {
@@ -21,16 +23,25 @@ class DatatablePage extends React.Component {
     }
 
 
+
     hanleDeleteItem = (index) => {
-        console.log("Delete Handler")
-        console.log("Before Delete::::::::::",this.props.expense)
-        const itemData=this.props.expense;
-        this.props.expense.splice(index,1)
+        // console.log("Delete Handler")
+        // console.log("Before Delete::::::::::", this.props.expense)
+        // // axios.delete(`http://localhost:3010/expense/deleteTransactions/${index}`)
+        // const itemData = this.state.data;
+        // itemData.splice(index, 1);
+        // this.setState({ data: itemData })
+        // console.log("After Delete::::::::", this.props.expense)
 
-        console.log("After Delete::::::::",this.props.expense)
-
-
+       Axios.delete(`http://localhost:3010/expense/deleteTransactions/${index}`,)
+        .then(res=>{
+            this.setState({data:res})
+        }).catch(res=>{
+            console.log("Error Occured")
+        })
     }
+
+
 
     render() {
         const button = (index) => {
@@ -43,7 +54,7 @@ class DatatablePage extends React.Component {
         rowData.map((row, index) => {
             row.action = button(index)
         })
-        console.log(rowData)
+
         const data = {
             columns: [
                 {
@@ -91,7 +102,7 @@ class DatatablePage extends React.Component {
                     <Modal.Header closeButton>
                         <Modal.Title>Add Expense</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body><ExpenseForm /></Modal.Body>
+                    <Modal.Body><ExpenseForm modalClose={this.handleClose} /></Modal.Body>
                     <Modal.Footer>
                         <button className="btn btn-success" onClick={this.handleClose}>
                             Close

@@ -1,9 +1,10 @@
 .Category-chart{
     height: 300px;
     width: 40%;
-    border: 1px solid;
+    /* border: 1px solid; */
     /* margin-top: 12px;
     margin-right: 10px; */
+    padding: 20px;
     overflow: auto;
 }
 
