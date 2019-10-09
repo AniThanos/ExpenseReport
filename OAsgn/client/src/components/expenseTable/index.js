@@ -4,6 +4,8 @@ import './style.css'
 import Modal from 'react-bootstrap/Modal'
 import ExpenseForm from '../addexpensemodal/index'
 import Axios from 'axios';
+import {setExpense} from './../../action/expense'
+import {connect} from 'react-redux'
 class DatatablePage extends React.Component {
 
     state = {
@@ -33,17 +35,24 @@ class DatatablePage extends React.Component {
         // this.setState({ data: itemData })
         // console.log("After Delete::::::::", this.props.expense)
 
-       Axios.delete(`http://localhost:3010/expense/deleteTransactions/${index}`,)
+       Axios.delete(`http://localhost:3010/expense/deleteTransactions/${index}`)
         .then(res=>{
-            this.setState({data:res})
+            // this.setState({data:res.data})
+
+            this.props.setExpense(res['data'])
         }).catch(res=>{
             console.log("Error Occured")
         })
     }
 
-
+    componentDidMount(){
+        setTimeout(()=>{
+            // console.log(this.props.expense)
+        },1000)
+    }
 
     render() {
+        
         const button = (index) => {
             return (<div>
                 <button onClick={() => this.handleEdit(index)} className="btn btn-outline-primary">Edit</button>
@@ -94,7 +103,7 @@ class DatatablePage extends React.Component {
         };
 
         return (
-
+            
             < div className="Expense-Table" >
 
                 <button className="btn btn-info" onClick={this.handleShow}>AddExpense</button>
@@ -124,4 +133,10 @@ class DatatablePage extends React.Component {
         );
     }
 }
-export default DatatablePage;
+
+function mapStateToProps (state){
+    return ({
+        expense:state.expense
+    })
+}
+export default connect(mapStateToProps,{setExpense})(DatatablePage);

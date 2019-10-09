@@ -5,7 +5,10 @@ import BudgetChart from '../budgetChart/index'
 import CategoryChart from '../categorychart/index'
 import ExpenseTable from '../expenseTable/index'
 import axios from 'axios';
-export default class Expense extends React.Component {
+import {setExpense} from './../../action/expense'
+import {setTotalExpense} from '../../action/totalExpense'
+import {connect} from 'react-redux'
+class Expense extends React.Component {
     state = {
         expense: [],
         totalExpense: 0
@@ -20,6 +23,8 @@ export default class Expense extends React.Component {
                 amt += parseInt(item.Amount)
             })
             this.setState({ expense: res.data, totalExpense: amt })
+            this.props.setExpense(res.data)
+            this.props.setTotalExpense(this.state.totalExpense)
         }).catch(err => {
             console.log(err)
         })
@@ -30,7 +35,7 @@ export default class Expense extends React.Component {
                 <Header />
                 <div style={{  }}>
                     <SideBar />
-                    <BudgetChart totalExpense={this.state.totalExpense} />
+                    <BudgetChart />
                     <CategoryChart />
                     <ExpenseTable expense={this.state.expense} />
                 </div>
@@ -39,3 +44,4 @@ export default class Expense extends React.Component {
         )
     }
 }
+export default connect(null,{setExpense,setTotalExpense})(Expense)

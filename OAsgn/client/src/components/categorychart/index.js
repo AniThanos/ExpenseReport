@@ -15,35 +15,34 @@ class CategoryChart extends React.Component {
         ]
     }
 
-    componentDidMount() {
-        //get xpense data
-        axios.get('http://localhost:3010/expense').then(res => {
-
-            this.setState({ expense: res.data })
-
+    getData() {
+        setTimeout(() => {
+            this.state.chartData= [
+                ['category', 'expense per category']
+            ]
             this.props.category.map(item => {
                 let amount = 0;
-                var categoryWiseData = this.state.expense.filter(expenseitem => expenseitem.Category === item)
+                var categoryWiseData = this.props.expense.filter(expenseitem => expenseitem.Category === item)
                 categoryWiseData.map(catWise => {
                     amount = amount + parseInt(catWise.Amount)
                 })
-                let tempChartData = this.state.chartData.slice();
-
-                let innerArr = [item, amount]
+                let tempChartData=[];
+                tempChartData = this.state.chartData.slice();
+                
+                let innerArr = [];
+                innerArr=[item, amount]
                 tempChartData.push(innerArr)
                 this.setState({ chartData: tempChartData })
-
-
             })
 
-        }).catch(err => {
-            throw Error(err)
-        })
-
-
+        }, 1000)
     }
-
+    
+    componentWillReceiveProps(){
+        this.getData()
+    }
     render() {
+        
         return (
 
             <div className="Category-chart">
@@ -80,7 +79,8 @@ class CategoryChart extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        category: state.category
+        category: state.category,
+        expense: state.expense
     }
 }
 export default connect(mapStateToProps)(CategoryChart)

@@ -31,17 +31,17 @@ router.post('/addTransactions', (req, res) => {
     obj.transactions.push(newExpense)
     fs.writeFileSync(file, JSON.stringify(obj), err => console.log(err))
 
-    res.send("Success")
+    res.send(JSON.stringify(obj.transactions))
 
 })
 
 //delete transactions
 router.delete('/deleteTransactions/:id',(req,res)=>{
-    console.log(req.params.id)
+    // console.log()
     let dbPath=path.join(__dirname,'../')
     var file=dbPath+'/data/db.json';
     var obj=require(file)
-    obj.transactions.splice(1,1)
+    obj.transactions.splice(req.params.id,1)
     fs.writeFileSync(file,JSON.stringify(obj),err=>console.log(err))
     res.send(JSON.stringify(obj.transactions))
 })

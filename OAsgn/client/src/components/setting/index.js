@@ -7,8 +7,6 @@ import { setBudget } from '../../action/budget'
 import { setCategory } from '../../action/category'
 function SettingsPage(props) {
 
-
-
     const [budgetAmount, setbudgetAmount] = useState(props.budget)
     const [categoriesName, setcategoriesName] = useState('')
     const [arrayData, setarrayData] = useState(props.category)

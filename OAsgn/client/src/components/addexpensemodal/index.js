@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import { connect } from 'react-redux'
-
+import {setExpense} from './../../action/expense'
 
 const ExpenseForm = (props) => {
     const [form, setForm] = useState({
@@ -40,7 +40,9 @@ const ExpenseForm = (props) => {
                 }
                 const body = newExpense
                 const res = await axios.post('http://localhost:3010/expense/addTransactions', body, config)
-                if (res['data'] === "Success") {
+                if (res['data']) {
+                    
+                    props.setExpense(res['data'])
                     props.modalClose()
                 }
             } catch (err) {
@@ -92,4 +94,4 @@ const mapStateToProps = (state) => ({
     budgetredux: state.budget
 })
 
-export default connect(mapStateToProps)(ExpenseForm)
+export default connect(mapStateToProps,{setExpense})(ExpenseForm)

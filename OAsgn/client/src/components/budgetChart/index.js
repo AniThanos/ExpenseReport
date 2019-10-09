@@ -5,9 +5,25 @@ import 'react-circular-progressbar/dist/styles.css'
 import './style.css'
 import { connect } from 'react-redux'
 class Chart extends Component {
+    state={
+        totalExpense:'',
+        budget:''
+    }
+    
+    componentDidMount(){
+        setTimeout(()=>{
+            this.setState({
+                totalExpense:this.props.totalExpense,
+                budget:this.props.budget
+            })
+        },1000)
+    }
 
-
+    componentWillReceiveProps(){
+        console.log(1)
+    }
     render() {
+        
         const percentage = (this.props.totalExpense / this.props.budget) * 100;
         const num = percentage.toFixed(2)
 
@@ -36,8 +52,8 @@ class Chart extends Component {
 
 function mapStateToProps(state) {
     return {
-        budget: state.budget
-
+        budget: state.budget,
+        totalExpense:state.totalExpense
     }
 }
 
