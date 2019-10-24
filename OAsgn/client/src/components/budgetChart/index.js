@@ -20,10 +20,11 @@ class Chart extends Component {
     }
 
     componentWillReceiveProps(){
-        console.log(1)
-    }
-    render() {
+        console.log(1);
         
+    }
+    
+    render() {
         const percentage = (this.props.totalExpense / this.props.budget) * 100;
         const num = percentage.toFixed(2)
 

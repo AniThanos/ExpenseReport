@@ -40,6 +40,7 @@ class DatatablePage extends React.Component {
             // this.setState({data:res.data})
 
             this.props.setExpense(res['data'])
+            // window.location.reload()
         }).catch(res=>{
             console.log("Error Occured")
         })

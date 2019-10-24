@@ -44,6 +44,8 @@ const ExpenseForm = (props) => {
                     
                     props.setExpense(res['data'])
                     props.modalClose()
+                    // window.location.reload()
+                    // location.reload()
                 }
             } catch (err) {
                 console.log(err)
