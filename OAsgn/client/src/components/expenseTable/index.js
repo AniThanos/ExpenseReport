@@ -4,13 +4,14 @@ import './style.css'
 import Modal from 'react-bootstrap/Modal'
 import ExpenseForm from '../addexpensemodal/index'
 import Axios from 'axios';
-import {setExpense} from './../../action/expense'
-import {connect} from 'react-redux'
+import { setExpense } from './../../action/expense'
+import { connect } from 'react-redux'
+import {setTotalExpense} from '../../action/totalExpense'
 class DatatablePage extends React.Component {
 
     state = {
         show: false,
-        data: ''
+        data: this.props.expense
     }
 
     handleShow = () => {
@@ -21,10 +22,30 @@ class DatatablePage extends React.Component {
     }
 
     handleEdit = (index) => {
-        console.log("Edit handler", index)
+        console.log(1)
+        return (
+        <Modal show={true}>
+            <Modal.Header closeButton>
+                <Modal.Title>Add Expense</Modal.Title>
+            </Modal.Header>
+            <Modal.Body><ExpenseForm modalClose={this.handleClose} /></Modal.Body>
+            <Modal.Footer>
+                <button className="btn btn-success" onClick={this.handleClose}>
+                    Close
+                        </button>
+                {/* <button className="btn btn-primary" onClick={this.handleClose}>
+                            Save Changes
+                        </button> */}
+            </Modal.Footer>
+        </Modal>
+    )
     }
 
+    // editModal = () => {
+    //     return (
 
+    //     )
+    // }
 
     hanleDeleteItem = (index) => {
         // console.log("Delete Handler")
@@ -35,25 +56,30 @@ class DatatablePage extends React.Component {
         // this.setState({ data: itemData })
         // console.log("After Delete::::::::", this.props.expense)
 
-       Axios.delete(`http://localhost:3010/expense/deleteTransactions/${index}`)
-        .then(res=>{
-            // this.setState({data:res.data})
+        Axios.delete(`http://localhost:3010/expense/deleteTransactions/${index}`)
+            .then(res => {
+                // this.setState({data:res.data})
 
-            this.props.setExpense(res['data'])
-            // window.location.reload()
-        }).catch(res=>{
-            console.log("Error Occured")
-        })
+                this.props.setExpense(res['data'])
+                let newTotalAmt=0;
+                res['data'].map(trans=>{
+                    newTotalAmt =newTotalAmt+parseInt(trans.Amount)
+                })
+                this.props.setTotalExpense(newTotalAmt)
+            }).catch(res => {
+                console.log("Error Occured")
+            })
     }
 
-    componentDidMount(){
-        setTimeout(()=>{
-            // console.log(this.props.expense)
-        },1000)
+    componentDidMount() {
+        setTimeout(() => {
+            console.log(this.state.data)
+        }, 1000)
+
     }
 
     render() {
-        
+
         const button = (index) => {
             return (<div>
                 <button onClick={() => this.handleEdit(index)} className="btn btn-outline-primary">Edit</button>
@@ -104,7 +130,7 @@ class DatatablePage extends React.Component {
         };
 
         return (
-            
+
             < div className="Expense-Table" >
 
                 <button className="btn btn-info" onClick={this.handleShow}>AddExpense</button>
@@ -135,9 +161,9 @@ class DatatablePage extends React.Component {
     }
 }
 
-function mapStateToProps (state){
+function mapStateToProps(state) {
     return ({
-        expense:state.expense
+        expense: state.expense
     })
 }
-export default connect(mapStateToProps,{setExpense})(DatatablePage);
+export default connect(mapStateToProps, { setExpense,setTotalExpense })(DatatablePage);

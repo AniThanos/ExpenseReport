@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import {setExpense} from './../../action/expense'
-
+import {setTotalExpense} from '../../action/totalExpense'
 const ExpenseForm = (props) => {
     const [form, setForm] = useState({
         category: '',
@@ -43,6 +43,13 @@ const ExpenseForm = (props) => {
                 if (res['data']) {
                     
                     props.setExpense(res['data'])
+                    console.log(res['data'])
+                    let newTotalAmt=0;
+                    res['data'].map(trans=>{
+                        newTotalAmt=newTotalAmt+parseInt(trans.Amount)
+                    })
+                    // console.log(newTotalAmt)
+                    props.setTotalExpense(newTotalAmt)
                     props.modalClose()
                     // window.location.reload()
                     // location.reload()
@@ -96,4 +103,4 @@ const mapStateToProps = (state) => ({
     budgetredux: state.budget
 })
 
-export default connect(mapStateToProps,{setExpense})(ExpenseForm)
+export default connect(mapStateToProps,{setExpense,setTotalExpense})(ExpenseForm)

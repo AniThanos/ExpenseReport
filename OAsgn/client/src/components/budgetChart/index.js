@@ -19,10 +19,7 @@ class Chart extends Component {
         },1000)
     }
 
-    componentWillReceiveProps(){
-        console.log(1);
-        
-    }
+    
     
     render() {
         const percentage = (this.props.totalExpense / this.props.budget) * 100;
