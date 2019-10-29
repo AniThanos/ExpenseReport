@@ -22,7 +22,6 @@ class DatatablePage extends React.Component {
     }
 
     handleEdit = (index) => {
-        console.log(1)
         return (
         <Modal show={true}>
             <Modal.Header closeButton>
@@ -133,7 +132,7 @@ class DatatablePage extends React.Component {
 
             < div className="Expense-Table" >
 
-                <button className="btn btn-info" onClick={this.handleShow}>AddExpense</button>
+                <button className="btn btn-info" style={{marginLeft:'10px'}} onClick={this.handleShow}>AddExpense</button>
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Add Expense</Modal.Title>
