@@ -81,7 +81,7 @@ class DatatablePage extends React.Component {
 
         const button = (index) => {
             return (<div>
-                <button onClick={() => this.handleEdit(index)} className="btn btn-outline-primary">Edit</button>
+                <button onClick={() => this.handleEdit(index)} className="btn btn-outline-primary" style={{marginRight:'5px'}}>Edit</button>
                 <button onClick={() => this.hanleDeleteItem(index)} className="btn btn-outline-danger">Delete</button>
             </div>)
         }

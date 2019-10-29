@@ -19,17 +19,15 @@ export default class Header extends React.Component {
                 </button>
 
                 <div className="headerMenu" style={{ display: !this.state.displayMenu ? 'none' : '' }}>
-                    <nav className="navbar navbar-inverse">
-                        <div>
-                            <Link to='/'>Home</Link>
-                        </div>
-                        <div>
-                            <Link to='/setting'>Settings</Link>
-                        </div>
-                        <div>
-                            <Link to='/'>Profile</Link>
-                        </div>
-                    </nav>
+                    <div className="dropDown">
+
+                        <Link to='/'>Home</Link>
+
+                        <Link to='/setting'>Settings</Link>
+
+                        <Link to='/'>Profile</Link>
+
+                    </div>
                 </div>
 
                 <h3>Expense Report</h3>

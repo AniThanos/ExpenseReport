@@ -20,12 +20,11 @@
     display: none;
 }
 
+.sidebar a:hover{
+    background-color: rgb(37, 35, 35)
+}
 @media screen and (max-width:640px){
     .sidebar{
         display:none;
     }
-}
-
-@media screen and (max-width:320px){
-    
 }
