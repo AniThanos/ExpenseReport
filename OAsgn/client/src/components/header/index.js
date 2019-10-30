@@ -7,6 +7,11 @@ export default class Header extends React.Component {
     }
     toggleMenu = () => {
         this.setState({ displayMenu: !this.state.displayMenu })
+        if(!this.state.displayMenu){
+            setTimeout(()=>{
+                this.setState({displayMenu: !this.state.displayMenu})
+            },5000)
+        }
     }
     render() {
         return (

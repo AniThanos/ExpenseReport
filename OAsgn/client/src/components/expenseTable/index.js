@@ -6,12 +6,15 @@ import ExpenseForm from '../addexpensemodal/index'
 import Axios from 'axios';
 import { setExpense } from './../../action/expense'
 import { connect } from 'react-redux'
-import {setTotalExpense} from '../../action/totalExpense'
+import { setTotalExpense } from '../../action/totalExpense'
+import Modall from '../Modal/index'
 class DatatablePage extends React.Component {
 
     state = {
         show: false,
-        data: this.props.expense
+        data: this.props.expense,
+        edit: false,
+        selExpense:''
     }
 
     handleShow = () => {
@@ -22,47 +25,22 @@ class DatatablePage extends React.Component {
     }
 
     handleEdit = (index) => {
-        return (
-        <Modal show={true}>
-            <Modal.Header closeButton>
-                <Modal.Title>Add Expense</Modal.Title>
-            </Modal.Header>
-            <Modal.Body><ExpenseForm modalClose={this.handleClose} /></Modal.Body>
-            <Modal.Footer>
-                <button className="btn btn-success" onClick={this.handleClose}>
-                    Close
-                        </button>
-                {/* <button className="btn btn-primary" onClick={this.handleClose}>
-                            Save Changes
-                        </button> */}
-            </Modal.Footer>
-        </Modal>
-    )
+        this.setState({ edit: true,
+        selExpense:this.props.expense[index] })
+        console.log(this.props.expense[index])
     }
 
-    // editModal = () => {
-    //     return (
-
-    //     )
-    // }
 
     hanleDeleteItem = (index) => {
-        // console.log("Delete Handler")
-        // console.log("Before Delete::::::::::", this.props.expense)
-        // // axios.delete(`http://localhost:3010/expense/deleteTransactions/${index}`)
-        // const itemData = this.state.data;
-        // itemData.splice(index, 1);
-        // this.setState({ data: itemData })
-        // console.log("After Delete::::::::", this.props.expense)
 
         Axios.delete(`http://localhost:3010/expense/deleteTransactions/${index}`)
             .then(res => {
                 // this.setState({data:res.data})
 
                 this.props.setExpense(res['data'])
-                let newTotalAmt=0;
-                res['data'].map(trans=>{
-                    newTotalAmt =newTotalAmt+parseInt(trans.Amount)
+                let newTotalAmt = 0;
+                res['data'].map(trans => {
+                    newTotalAmt = newTotalAmt + parseInt(trans.Amount)
                 })
                 this.props.setTotalExpense(newTotalAmt)
             }).catch(res => {
@@ -70,20 +48,14 @@ class DatatablePage extends React.Component {
             })
     }
 
-    componentDidMount() {
-        setTimeout(() => {
-            console.log(this.state.data)
-        }, 1000)
-
-    }
-
     render() {
-
         const button = (index) => {
-            return (<div>
-                <button onClick={() => this.handleEdit(index)} className="btn btn-outline-primary" style={{marginRight  :'5px'}}>Edit</button>
-                <button onClick={() => this.hanleDeleteItem(index)} className="btn btn-outline-danger">Delete</button>
-            </div>)
+            return (
+                <div>
+                    <button onClick={() => this.handleEdit(index)} className="btn btn-outline-primary" style={{ marginRight: '5px' }}>Edit</button>
+                    <button onClick={() => this.hanleDeleteItem(index)} className="btn btn-outline-danger">Delete</button>
+                </div>
+            )
         }
         const rowData = this.props.expense;
         rowData.map((row, index) => {
@@ -119,20 +91,15 @@ class DatatablePage extends React.Component {
                 {
                     label: 'Action'
                 }
-
             ],
-
             rows: rowData
-
-
-
         };
 
         return (
 
             < div className="Expense-Table" >
 
-                <button className="btn btn-info" style={{marginLeft:'10px'}} onClick={this.handleShow}>AddExpense</button>
+                <button className="btn btn-info" style={{ marginLeft: '10px' }} onClick={this.handleShow}>AddExpense</button>
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Add Expense</Modal.Title>
@@ -153,8 +120,14 @@ class DatatablePage extends React.Component {
                     bordered
                     small
                     data={data}
-                    editable
                 />
+                
+                    <Modall 
+                    show={this.state.edit} 
+                    selected={this.state.selExpense}
+                    title="edit"
+                    />
+    
             </div >
         );
     }
@@ -165,4 +138,4 @@ function mapStateToProps(state) {
         expense: state.expense
     })
 }
-export default connect(mapStateToProps, { setExpense,setTotalExpense })(DatatablePage);
+export default connect(mapStateToProps, { setExpense, setTotalExpense })(DatatablePage);
