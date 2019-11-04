@@ -5,9 +5,9 @@ import BudgetChart from '../budgetChart/index'
 import CategoryChart from '../categorychart/index'
 import ExpenseTable from '../expenseTable/index'
 import axios from 'axios';
-import {setExpense} from './../../action/expense'
-import {setTotalExpense} from '../../action/totalExpense'
-import {connect} from 'react-redux'
+import { setExpense } from './../../action/expense'
+import { setTotalExpense } from '../../action/totalExpense'
+import { connect } from 'react-redux'
 class Expense extends React.Component {
     state = {
         expense: [],
@@ -33,15 +33,15 @@ class Expense extends React.Component {
         return (
             <div>
                 <Header />
-                <div style={{  }}>
+                <div style={{display:'contents',flexFlow:'row wrap'}}>
                     <SideBar />
                     <BudgetChart />
                     <CategoryChart />
                     <ExpenseTable expense={this.state.expense} />
                 </div>
-                
+
             </div>
         )
     }
 }
-export default connect(null,{setExpense,setTotalExpense})(Expense)
+export default connect(null, { setExpense, setTotalExpense })(Expense)

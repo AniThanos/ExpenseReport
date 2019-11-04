@@ -22,6 +22,7 @@ class DatatablePage extends React.Component {
     }
     handleClose = () => {
         this.setState({ show: false })
+        this.setState({edit:false})
     }
 
     handleEdit = (index) => {
@@ -126,6 +127,7 @@ class DatatablePage extends React.Component {
                     show={this.state.edit} 
                     selected={this.state.selExpense}
                     title="edit"
+                    handleModalClose={this.handleClose}
                     />
     
             </div >

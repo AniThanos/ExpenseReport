@@ -6,19 +6,19 @@ export default function editExpense(props){
             <div className="form-group">
                 <label className="control-label col-sm-5">Item Name :</label>
                 <div className="col-sm-10">
-                    <input type="text" value={props.item} id="itemname" className="form-control"/>
+                    <input type="text" value={props.item} name="itemname" className="form-control"/>
                 </div>
             </div>
             <div className="form-group">
                 <label className="control-label col-sm-5">Amount :</label>
                 <div className="col-sm-10">
-                    <input type="number" value={props.amount} id="amount" className="form-control"/>
+                    <input type="number" value={props.amount} name="amount" className="form-control"/>
                 </div>
             </div>
             <div className="form-group">
                 <label className="control-label col-sm-5">Expense Date :</label>
                 <div className="col-sm-10">
-                    <input type="date" value={props.expDate} id="expdate"  className="form-control" style={{paddingRight:'24px'}}/>
+                    <input type="date" value={props.expDate} name="expdate"  className="form-control" style={{paddingRight:'24px'}}/>
                 </div>
             </div>
             <div className="form-group">

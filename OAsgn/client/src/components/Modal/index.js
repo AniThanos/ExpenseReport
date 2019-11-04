@@ -14,6 +14,9 @@ export default class Modall extends React.Component{
                 <Modal.Body>
                     <EditExpense item={this.props.selected.Item} amount={this.props.selected.Amount} expDate={this.props.selected.Date}/>
                 </Modal.Body>
+                <Modal.Footer>
+                    <button className="btn btn-danger" onClick={this.props.handleModalClose}>Close</button>
+                </Modal.Footer>
             </Modal>
         )
     }
