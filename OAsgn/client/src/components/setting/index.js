@@ -99,7 +99,7 @@ function SettingsPage(props) {
                 </button>
 
                     </div>
-                    <div className="items" style={{ marginTop: '60px', marginLeft: '20%' }}>
+                    <div className="items" style={{ marginTop: '60px', marginLeft: '15%',padding:'15px' }}>
 
                         <table className="table table-striped table-bordered ">
                             <thead className=" header thead-dark ">

@@ -41,18 +41,13 @@ const ExpenseForm = (props) => {
                 const body = newExpense
                 const res = await axios.post('http://localhost:3010/expense/addTransactions', body, config)
                 if (res['data']) {
-                    
                     props.setExpense(res['data'])
-                    console.log(res['data'])
                     let newTotalAmt=0;
                     res['data'].map(trans=>{
                         newTotalAmt=newTotalAmt+parseInt(trans.Amount)
                     })
-                    // console.log(newTotalAmt)
                     props.setTotalExpense(newTotalAmt)
                     props.modalClose()
-                    // window.location.reload()
-                    // location.reload()
                 }
             } catch (err) {
                 console.log(err)

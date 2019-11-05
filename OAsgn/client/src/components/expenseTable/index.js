@@ -14,7 +14,8 @@ class DatatablePage extends React.Component {
         show: false,
         data: this.props.expense,
         edit: false,
-        selExpense:''
+        selExpense:'',
+        selectedId:''
     }
 
     handleShow = () => {
@@ -27,8 +28,8 @@ class DatatablePage extends React.Component {
 
     handleEdit = (index) => {
         this.setState({ edit: true,
-        selExpense:this.props.expense[index] })
-        console.log(this.props.expense[index])
+        selExpense:this.props.expense[index] ,
+        selectedId:index})
     }
 
 
@@ -52,7 +53,7 @@ class DatatablePage extends React.Component {
     render() {
         const button = (index) => {
             return (
-                <div>
+                <div style={{textAlign:'center'}}>
                     <button onClick={() => this.handleEdit(index)} className="btn btn-outline-primary" style={{ marginRight: '5px' }}>Edit</button>
                     <button onClick={() => this.hanleDeleteItem(index)} className="btn btn-outline-danger">Delete</button>
                 </div>
@@ -100,7 +101,7 @@ class DatatablePage extends React.Component {
 
             < div className="Expense-Table" >
 
-                <button className="btn btn-info" style={{ marginLeft: '10px' }} onClick={this.handleShow}>AddExpense</button>
+                <button className="btn btn-info" style={{ marginLeft: '15px' }} onClick={this.handleShow}>AddExpense</button>
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Add Expense</Modal.Title>
@@ -128,6 +129,7 @@ class DatatablePage extends React.Component {
                     selected={this.state.selExpense}
                     title="edit"
                     handleModalClose={this.handleClose}
+                    selectedId={this.state.selectedId}
                     />
     
             </div >

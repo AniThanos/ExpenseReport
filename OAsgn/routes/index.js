@@ -46,5 +46,27 @@ router.delete('/deleteTransactions/:id',(req,res)=>{
     res.send(JSON.stringify(obj.transactions))
 })
 
+/*----------------------------
 
+    Update Transaction
+
+-------------------------------- */
+router.put('/updateTransaction/:id',(req,res)=>{
+    let dbPath=path.join(__dirname,'../')
+    let file=dbPath+'/data/db.json';
+    let obj=require(file)
+    let id=req.params.id
+    let selected_Transaction=obj.transactions[id];
+
+    selected_Transaction.Item=req.body.itemname;
+    selected_Transaction.Amount=req.body.amount;
+    selected_Transaction.Date=req.body.expDate;
+
+
+    fs.writeFile(file,JSON.stringify(obj),(err)=>{
+        if(err) throw err
+        res.send(obj)
+    })
+
+})
 module.exports = router;
