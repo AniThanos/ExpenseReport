@@ -8,6 +8,9 @@ import { setExpense } from './../../action/expense'
 import { connect } from 'react-redux'
 import { setTotalExpense } from '../../action/totalExpense'
 import Modall from '../Modal/index'
+import {serviceURL} from '../config/url'
+
+
 class DatatablePage extends React.Component {
 
     state = {
@@ -35,7 +38,7 @@ class DatatablePage extends React.Component {
 
     hanleDeleteItem = (index) => {
 
-        Axios.delete(`http://localhost:3010/expense/deleteTransactions/${index}`)
+        Axios.delete(`${serviceURL}/expense/deleteTransactions/${index}`)
             .then(res => {
                 // this.setState({data:res.data})
 

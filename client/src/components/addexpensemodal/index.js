@@ -5,6 +5,8 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import {setExpense} from './../../action/expense'
 import {setTotalExpense} from '../../action/totalExpense'
+import {serviceURL} from '../config/url'
+
 const ExpenseForm = (props) => {
     const [form, setForm] = useState({
         category: '',
@@ -39,7 +41,7 @@ const ExpenseForm = (props) => {
                     }
                 }
                 const body = newExpense
-                const res = await axios.post('http://localhost:3010/expense/addTransactions', body, config)
+                const res = await axios.post(`${serviceURL}expense/addTransactions`, body, config)
                 if (res['data']) {
                     props.setExpense(res['data'])
                     let newTotalAmt=0;

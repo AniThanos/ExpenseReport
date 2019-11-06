@@ -8,6 +8,7 @@ import axios from 'axios';
 import { setExpense } from './../../action/expense'
 import { setTotalExpense } from '../../action/totalExpense'
 import { connect } from 'react-redux'
+import {serviceURL} from '../config/url'
 class Expense extends React.Component {
     state = {
         expense: [],
@@ -18,7 +19,7 @@ class Expense extends React.Component {
         //     console.log(data.body)
         // })
         let amt = 0;
-        axios.get('http://localhost:3010/expense').then(res => {
+        axios.get(`${serviceURL}expense`).then(res => {
             res.data.map(item => {
                 amt += parseInt(item.Amount)
             })

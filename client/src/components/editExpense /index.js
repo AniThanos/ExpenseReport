@@ -3,6 +3,7 @@ import './style.css'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import {setExpense} from '../../action/expense'
+import {serviceURL} from '../config/url'
 
 const EditExpense=(props)=>{
     const [formData,setFormData]=useState({
@@ -31,7 +32,7 @@ const EditExpense=(props)=>{
             }
         }
 
-        const updateReq=await axios.put(`http://localhost:3010/expense/updateTransaction/${props.id}`,expenseData,config)
+        const updateReq=await axios.put(`${serviceURL}expense/updateTransaction/${props.id}`,expenseData,config)
 
         console.log(updateReq['data'].transactions)
         if(updateReq['data'].transactions.length>0){
