@@ -1,0 +1,30 @@
+.sidebar{
+    width:15%;
+    height: 110vh;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    float: left;
+}
+
+.sidebar a{
+    padding: 5%;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+.toogleButton{
+    display: none;
+}
+
+.sidebar a:hover{
+    background-color: rgb(37, 35, 35)
+}
+@media screen and (max-width:640px){
+    .sidebar{
+        display:none;
+    }
+}

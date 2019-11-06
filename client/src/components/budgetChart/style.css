@@ -1,0 +1,32 @@
+.budget-chart{
+    height: 300px;
+    width: 40%;
+    /* border: 1px solid; */
+    padding: 20px;
+    display: flex;
+    /* margin-top: 10px;
+    margin-right: 10px; */
+    float: left;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    margin:5px 10px 7px 15px;
+}
+
+
+@media screen and (max-width:700px){
+    .budget-chart{
+        width:80%;
+    }
+}
+
+@media screen and (max-width:640px){
+    .budget-chart{
+        width: 95%
+    }
+}
+
+@media screen and (max-width:320px){
+    .budget-chart{
+        width: 320px
+    }
+}
