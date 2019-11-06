@@ -38,7 +38,7 @@ class DatatablePage extends React.Component {
 
     hanleDeleteItem = (index) => {
 
-        Axios.delete(`${serviceURL}/expense/deleteTransactions/${index}`)
+        Axios.delete(`${serviceURL}expense/deleteTransactions/${index}`)
             .then(res => {
                 // this.setState({data:res.data})
 
