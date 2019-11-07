@@ -1,4 +1,0 @@
-export const SET_BUDGET = "SET_BUDGET"
-export const SET_CATEGORY = "SET_CATEGORY"
-export const SET_EXPENSE="SET_EXPENSE"
-export const SET_TOTALEXPENSE="SET_TOTALEXPENSE"

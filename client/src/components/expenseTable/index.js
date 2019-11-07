@@ -66,7 +66,6 @@ class DatatablePage extends React.Component {
         rowData.map((row, index) => {
             row.action = button(index)
         })
-
         const data = {
             columns: [
                 {
