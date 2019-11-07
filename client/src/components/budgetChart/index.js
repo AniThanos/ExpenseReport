@@ -39,9 +39,9 @@ class Chart extends Component {
                 </div>
                 <div style={{ }}>
                     <h6>Total Budget</h6>
-                    <p>{this.props.budget}</p>
+                    <p>₹ {this.props.budget}</p>
                     <h6>Total Expense</h6>
-                    <p>{this.props.totalExpense}</p>
+                    <p>₹ {this.props.totalExpense}</p>
                 </div>
             </div>
         )

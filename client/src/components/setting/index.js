@@ -26,8 +26,6 @@ function SettingsPage(props) {
     }
 
     const handleInput = (e, type) => {
-
-
         setcategoriesName(
             e.target.value
         )
@@ -40,20 +38,16 @@ function SettingsPage(props) {
     }
 
     const handleCategories = (e) => {
-        console.log('add Categories clicked', categoriesName)
-
         if (categoriesName !== "") {
-            let tempArr=arrayData.slice();
+            let tempArr = arrayData.slice();
             tempArr.push(categoriesName)
             setarrayData(tempArr)
             props.setCategory(categoriesName)
-            
         }
-       
+        setcategoriesName('')   
     }
 
     const deleteClicked = (item) => {
-     
         var tempArr = arrayData.slice();
         var index = tempArr.findIndex(data => data === item)
         tempArr.splice(index, 1)
@@ -66,26 +60,26 @@ function SettingsPage(props) {
             <Header />
             <div>
                 <SideBar />
-                <div style={{textAlign: "center" }}>
+                <div style={{ textAlign: "center" }}>
                     <div className="totalBudget" >
                         <label style={{ margin: '15px', fontWeight: 'bold', fontSize: '25px' }}>Total Budget </label>
                         <input style={{}}
                             type="number" value={budgetAmount}
                             onChange={e => setbudgetAmount(e.target.value)}
                             name="budgetAmount"
-                           
+
                         // disabled = {balanceCheck ? true : false}
                         />
                         <button className="btn btn-success" onClick={(e) => handleUpdate(e)}  >
                             Update
-                </button>
+                        </button>
 
                     </div>
 
                     <div className="categories" style={{ marginTop: '60px' }}>
                         <label style={{ margin: '15px', fontWeight: 'bold', fontSize: '25px' }}>Categories</label>
                         <input style={{}}
-                            type="text" value={categoriesName}
+                            type="text"
                             name="categoriesName"
                             onChange={e => handleInput(e)}
                             // disabled = {balanceCheck ? true : false}
@@ -93,13 +87,11 @@ function SettingsPage(props) {
                             required
                             value={categoriesName}
                         />
-
                         <button className="btn btn-success" onClick={handleCategories}  >
                             Add
-                </button>
-
+                        </button>
                     </div>
-                    <div className="items" style={{ marginTop: '60px', marginLeft: '15%',padding:'15px' }}>
+                    <div className="items" style={{ marginTop: '60px', marginLeft: '15%', padding: '15px' }}>
 
                         <table className="table table-striped table-bordered ">
                             <thead className=" header thead-dark ">
@@ -109,7 +101,7 @@ function SettingsPage(props) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {props.category.map((data, i) => {
+                                {arrayData.map((data, i) => {
                                     return <tr key={i} >
                                         <td>{data}</td>
                                         {/* <td> <i class="fa fa-trash" onClick={()=>this.deleteClicked(data)}> </i ></td> */}

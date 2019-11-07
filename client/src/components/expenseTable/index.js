@@ -8,7 +8,7 @@ import { setExpense } from './../../action/expense'
 import { connect } from 'react-redux'
 import { setTotalExpense } from '../../action/totalExpense'
 import Modall from '../Modal/index'
-import {serviceURL} from '../config/url'
+import { serviceURL } from '../config/url'
 
 
 class DatatablePage extends React.Component {
@@ -17,8 +17,8 @@ class DatatablePage extends React.Component {
         show: false,
         data: this.props.expense,
         edit: false,
-        selExpense:'',
-        selectedId:''
+        selExpense: '',
+        selectedId: ''
     }
 
     handleShow = () => {
@@ -26,13 +26,15 @@ class DatatablePage extends React.Component {
     }
     handleClose = () => {
         this.setState({ show: false })
-        this.setState({edit:false})
+        this.setState({ edit: false })
     }
 
     handleEdit = (index) => {
-        this.setState({ edit: true,
-        selExpense:this.props.expense[index] ,
-        selectedId:index})
+        this.setState({
+            edit: true,
+            selExpense: this.props.expense[index],
+            selectedId: index
+        })
     }
 
 
@@ -56,7 +58,7 @@ class DatatablePage extends React.Component {
     render() {
         const button = (index) => {
             return (
-                <div style={{textAlign:'center'}}>
+                <div style={{ textAlign: 'center' }}>
                     <button onClick={() => this.handleEdit(index)} className="btn btn-outline-primary" style={{ marginRight: '5px' }}>Edit</button>
                     <button onClick={() => this.hanleDeleteItem(index)} className="btn btn-outline-danger">Delete</button>
                 </div>
@@ -81,7 +83,7 @@ class DatatablePage extends React.Component {
                     width: 270
                 },
                 {
-                    label: 'Amount',
+                    label: 'Amount(in ₹)',
                     field: 'Amount',
                     sort: 'asc',
                     width: 200
@@ -101,7 +103,7 @@ class DatatablePage extends React.Component {
 
         return (
 
-            < div className="Expense-Table" >
+            <div className="Expense-Table">
 
                 <button className="btn btn-info" style={{ marginLeft: '15px' }} onClick={this.handleShow}>AddExpense</button>
                 <Modal show={this.state.show} onHide={this.handleClose}>
@@ -113,9 +115,6 @@ class DatatablePage extends React.Component {
                         <button className="btn btn-success" onClick={this.handleClose}>
                             Close
                         </button>
-                        {/* <button className="btn btn-primary" onClick={this.handleClose}>
-                            Save Changes
-                        </button> */}
                     </Modal.Footer>
                 </Modal>
 
@@ -125,15 +124,15 @@ class DatatablePage extends React.Component {
                     small
                     data={data}
                 />
-                
-                    <Modall 
-                    show={this.state.edit} 
+
+                <Modall
+                    show={this.state.edit}
                     selected={this.state.selExpense}
                     title="edit"
                     handleModalClose={this.handleClose}
                     selectedId={this.state.selectedId}
-                    />
-    
+                />
+
             </div >
         );
     }

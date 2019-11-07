@@ -1,0 +1,6 @@
+.amount_field::before{
+    content:'₹';
+    position: relative;
+    top:38px;
+    left:4px;
+}

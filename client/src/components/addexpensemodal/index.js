@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import {setExpense} from './../../action/expense'
 import {setTotalExpense} from '../../action/totalExpense'
 import {serviceURL} from '../config/url'
-
+import './style.css'
 const ExpenseForm = (props) => {
     const [form, setForm] = useState({
         category: '',
@@ -75,9 +75,9 @@ const ExpenseForm = (props) => {
                     <Form.Label>Item Name</Form.Label>
                     <Form.Control type="text" name="item" placeholder="Item Name" onChange={e => changeHandler(e)} required />
                 </Form.Group>
-                <Form.Group controlId="">
+                <Form.Group controlId="" className="amount_field">
                     <Form.Label>Amount</Form.Label>
-                    <Form.Control type="number" name="amount" placeholder="Amount" onChange={e => changeHandler(e)} required />
+                    <Form.Control  type="number" name="amount" placeholder="   Amount" onChange={e => changeHandler(e)} required />
                 </Form.Group>
                 <Form.Group controlId="">
                     <Form.Label>Date</Form.Label>

@@ -30,7 +30,7 @@ export default class Header extends React.Component {
 
                         <Link to='/setting'>Settings</Link>
 
-                        <Link to='/'>Profile</Link>
+                        {/* <Link to='/'>Profile</Link> */}
 
                     </div>
                 </div>

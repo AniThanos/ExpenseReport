@@ -55,7 +55,7 @@ const EditExpense=(props)=>{
                     <input type="text" value={formData.itemname} onChange={(e)=>formDataHandler(e)} name="itemname" className="form-control"/>
                 </div>
             </div>
-            <div className="form-group">
+            <div className="form-group amount_fieldEdit">
                 <label className="control-label col-sm-5">Amount :</label>
                 <div className="col-sm-10">
                     <input type="number" value={formData.amount} name="amount" onChange={(e)=>formDataHandler(e)} className="form-control"/>
