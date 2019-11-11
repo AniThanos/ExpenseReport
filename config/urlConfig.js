@@ -4,5 +4,5 @@ const local='http://localhost:3010'
 module.exports=env=="PRO"?{
     dbUrl:"http://localhost:8082"
 }:{
-    dbUrl:local
+    dbUrl:heroku
 }

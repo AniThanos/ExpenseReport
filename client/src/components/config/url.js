@@ -6,4 +6,4 @@
 let heroku='https://expensereport-ani.herokuapp.com/';
 let local='http://localhost:3010/'
 
-export const serviceURL = local
+export const serviceURL = heroku
