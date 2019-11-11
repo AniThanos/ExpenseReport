@@ -22,6 +22,12 @@ const ExpenseForm = (props) => {
             ...form,
             [e.target.name]: e.target.value
         })
+        if(e.target.name=="amount"){
+            let val=e.target.value;
+             val=val.replace(/\B(?=(\d{3}))/g,",")
+             console.log(val)
+        }
+        
     }
 
     const formSubmit = async (e) => {

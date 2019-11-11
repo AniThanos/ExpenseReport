@@ -4,6 +4,7 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {setExpense} from '../../action/expense'
 import {serviceURL} from '../config/url'
+import {setTotalExpense} from '../../action/totalExpense'
 
 const EditExpense=(props)=>{
     const [formData,setFormData]=useState({
@@ -12,7 +13,7 @@ const EditExpense=(props)=>{
         amount:props.amount,
         expDate:props.expDate
     })
-
+    const [errorMessage,setErrorMessage]=useState('')
     const {category,itemname,amount,expDate}=formData;
 
     const formDataHandler=(e)=>{
@@ -20,6 +21,7 @@ const EditExpense=(props)=>{
             ...formData,
             [e.target.name]:e.target.value
         })
+
     }
 
     const submitForm=async (e)=>{
@@ -31,15 +33,23 @@ const EditExpense=(props)=>{
                 'Contect-Type':'application/json'
             }
         }
-
-        const updateReq=await axios.put(`${serviceURL}expense/updateTransaction/${props.id}`,expenseData,config)
-
-        console.log(updateReq['data'].transactions)
-        if(updateReq['data'].transactions.length>0){
-            props.setExpense(updateReq['data'].transactions)
-            props.closeModal();
+        const remBal=props.budget-props.totalExpense       
+        if(amount<=remBal){
+            const updateReq=await axios.put(`${serviceURL}expense/updateTransaction/${props.id}`,expenseData,config)
+            let expprice=0;
+            if(updateReq['data'].transactions.length>0){
+                props.setExpense(updateReq['data'].transactions)
+                updateReq['data'].transactions.map(elem=>{
+                    expprice=expprice+parseInt(elem['Amount'])
+                })
+                props.setTotalExpense(expprice)
+                props.closeModal();
+            }
         }
-
+        else{
+            console.log(remBal)
+            setErrorMessage('Check Amount')
+        }
     }
     return(
         <form className="form-horizontal" onSubmit={(e)=>submitForm(e)}>
@@ -67,10 +77,22 @@ const EditExpense=(props)=>{
                     <input type="date" value={formData.expDate} name="expDate" onChange={(e)=>formDataHandler(e)} className="form-control" style={{paddingRight:'24px'}}/>
                 </div>
             </div>
+            <div style={{marginLeft:'15px',color:'#ff0000'}}>
+                <p>{errorMessage}</p>
+            </div>
             <div className="form-group">
                 <button type="submit" className="btn btn-success" style={{marginLeft:'15px'}}> Submit</button>
             </div>
         </form>
     )
 }
-export default connect(null,{setExpense})(EditExpense)
+
+const mapStateToProps = (state) =>{
+    return {
+        totalExpense:state.totalExpense,
+        budget:state.budget
+    }
+}
+
+
+export default connect(mapStateToProps,{setExpense,setTotalExpense})(EditExpense)
