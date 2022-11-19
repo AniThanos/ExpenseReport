@@ -14,5 +14,12 @@ pipeline{
                 sh 'npm install'
             }
         }
+        stage('install-react-package'){
+            steps {
+                dir("client"){
+                   sh 'npm install' 
+                }
+            }
+        }
     }
 }
