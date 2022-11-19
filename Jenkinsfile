@@ -1,7 +1,7 @@
 pipeline{
     agent any
     tools {
-        nodejs '16.0.0' 
+        nodejs '19.1.0' 
     }
     stages{
         stage ('Node Version'){
@@ -12,13 +12,6 @@ pipeline{
         stage('build'){
             steps {
                 sh 'npm install'
-            }
-        }
-        stage('install-react-package'){
-            steps {
-                dir("client"){
-                   sh 'npm install' 
-                }
             }
         }
     }
