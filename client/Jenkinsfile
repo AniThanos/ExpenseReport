@@ -1,0 +1,26 @@
+pipeline{
+    agent any
+    tools {
+        nodejs '16.0.0' 
+    }
+    stages{
+        stage ('Node Version'){
+            steps {
+                sh 'node --version'
+            }
+        }
+        stage('install-react-package'){
+            steps {
+                dir("client"){
+                   sh 'npm install' 
+                }
+            }
+        }
+        
+        
+    }
+}
+
+
+
+
